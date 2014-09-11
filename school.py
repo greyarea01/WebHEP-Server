@@ -2,14 +2,14 @@ __author__ = 'Jon'
 
 import cherrypy
 
-class PeopleApi:
+class SchoolApi:
     exposed = True
 
     def  __init__(self,db,admin=False):
-        print 'PeopleAPI init'
+        print 'SchoolApi init'
         self.session=db.session
         self.db=db
-        self.collection = self.session.people
+        self.collection = self.session.school
         self.admin = admin
 
     def GET(self):

@@ -1,9 +1,12 @@
 __author__ = 'Jon'
-class AdminApi:
-    def  __init__(self,db):
-        self.session=db.session
-        self.db=db
 
-    def getInfo(self,section,name):
-        #do nothing for now
-        print 'AdminApi:'+section+','+name
+import cherrypy
+
+class AdminApi:
+    exposed = True
+
+    def  __init__(self,db):
+        print 'AdminAPI init'
+
+    def index(self):
+        return 'Use admin/ [people/school/report] for admin API'
