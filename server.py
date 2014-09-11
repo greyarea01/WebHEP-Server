@@ -62,34 +62,47 @@ if __name__ == '__main__':
         },
         '/people' : {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
-            'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+            'tools.json_in.on': True,
+            'tools.json_out.on' : True,
         },
         '/report' : {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+            'tools.json_in.on': True,
+            'tools.json_out.on' : True,
+            'tools.response_headers.headers': [('Content-Type', 'application/json')]
         },
         '/school' : {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+            'tools.json_in.on': True,
+            'tools.json_out.on' : True,
+
+            'tools.response_headers.headers': [('Content-Type', 'application/json')]
         },
         '/admin/people' : {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
-            'tools.response_headers.headers': [('Content-Type', 'text/plain')]
+            'tools.json_in.on': True,
+            'tools.json_out.on' : True,
+            'tools.response_headers.headers': [('Content-Type', 'application/json')]
         },
         '/admin/report' : {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
+            'tools.json_in.on': True,
+            'tools.json_out.on' : True,
             'tools.response_headers.headers': [('Content-Type', 'text/plain')]
         },
         '/admin/school' : {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
+            'tools.json_in.on': True,
+            'tools.json_out.on' : True,
             'tools.response_headers.headers': [('Content-Type', 'text/plain')]
         }
     }
+    # FIXME check what Content-Type should be for response headers when using JSON
+
     cherrypy.config.update({'server.socket_port' : 8081})
     cherrypy.quickstart(app,'/',conf)
