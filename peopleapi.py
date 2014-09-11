@@ -12,8 +12,11 @@ class PeopleApi:
         self.collection = self.session.people
         self.admin = admin
 
-    def GET(self):
+    def GET(self,*args):
+        # retrieve an item
         print 'GET is allowed via people API'
+        for arg in args:
+            print arg
 
     def PUT(self):
         if self.admin:

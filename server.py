@@ -4,6 +4,7 @@ from peopleapi import PeopleApi
 from adminapi import AdminApi
 from reportapi import ReportApi
 from schoolapi import SchoolApi
+from dbtools import DBTools as DB
 
 import os
 import cherrypy
@@ -22,12 +23,12 @@ class App(object):
 if __name__ == '__main__':
     argc = len(sys.argv)
 
-    #db = DB()
-    #if argc == 1:
-    #    db.initDB(None)
-    #else:
-    #    db.initDB(sys.argv[1])
-    db = None
+    db = DB()
+    if argc == 1:
+        db.initDB(None)
+    else:
+        db.initDB(sys.argv[1])
+
     app = App()
 
     app.people = PeopleApi(db)
@@ -39,11 +40,13 @@ if __name__ == '__main__':
     app.school = SchoolApi(db)
     app.school.exposed = True
 
+    app.admin = AdminApi(db)
+    app.admin.exposed = True
+
     app.admin.people = PeopleApi(db,True)
     app.admin.report = ReportApi(db,True)
     app.admin.school = SchoolApi(db,True)
 
-    app.admin.exposed = True
     app.admin.people.exposed = True
     app.admin.report.exposed = True
     app.admin.school.exposed = True
